@@ -176,17 +176,19 @@ class MainClass
         Stopwatch timer = new Stopwatch();
         int[] aBunchOfItems = Enumerable.Range(0, 10000000).ToArray();
 
-        MeList<int> myPartyAges = new MeList<int>();
-        myPartyAges.AddRange(aBunchOfItems);       // missing reference for vs2022-pending      
-        timer.Restart();
-        myPartyAges.InsertRange(5, aBunchOfItems);
-        timer.Stop();
-        Console.WriteLine("MeList:\t" + (timer.ElapsedTicks / (float)Stopwatch.Frequency));
+        // None Built-in List
+        //MeList<int> myPartyAges = new MeList<int>();
+        //myPartyAges.AddRange(aBunchOfItems);       // missing reference for vs2022-pending      
+        //timer.Restart();
+        //myPartyAges.InsertRange(5, aBunchOfItems);
+        //timer.Stop();
+        //Console.WriteLine("MeList:\t" + (timer.ElapsedTicks / (float)Stopwatch.Frequency));
 
+        // Built -in Microsoft List
         List<int> myPartyAges2 = new List<int>();
         myPartyAges2.AddRange(aBunchOfItems);
         timer.Restart();
-        myPartyAges.InsertRange(5, aBunchOfItems);
+        myPartyAges2.InsertRange(5, aBunchOfItems);
         timer.Stop();
         Console.WriteLine("List:\t" + (timer.ElapsedTicks / (float)Stopwatch.Frequency));
 
