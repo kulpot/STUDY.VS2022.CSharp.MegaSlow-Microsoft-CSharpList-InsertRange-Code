@@ -174,21 +174,25 @@ class MainClass
 
         
         Stopwatch timer = new Stopwatch();
-        int[] aBunchOfItems = Enumerable.Range(0, 10000000).ToArray();
+        //int[] aBunchOfItems = Enumerable.Range(0, 10000000).ToArray();
+        //IEnumerable<int> aBunchOfItems = Enumerable.Range(0, 100000); // Enumerable.Range--yield Knowledge
+        List<int> aBunchOfItems = Enumerable.Range(0, 10000000).ToList();
 
         // None Built-in List
-        //MeList<int> myPartyAges = new MeList<int>();
-        //myPartyAges.AddRange(aBunchOfItems);       // missing reference for vs2022-pending      
-        //timer.Restart();
-        //myPartyAges.InsertRange(5, aBunchOfItems);
-        //timer.Stop();
-        //Console.WriteLine("MeList:\t" + (timer.ElapsedTicks / (float)Stopwatch.Frequency));
+        MeList<int> myPartyAges = new MeList<int>();
+        myPartyAges.AddRange(aBunchOfItems);       // missing reference for vs2022-pending      
+        timer.Restart();
+        myPartyAges.InsertRange(5, aBunchOfItems);
+        //myPartyAges.InsertRange(5, myPartyAges);
+        timer.Stop();
+        Console.WriteLine("MeList:\t" + (timer.ElapsedTicks / (float)Stopwatch.Frequency));
 
         // Built -in Microsoft List
         List<int> myPartyAges2 = new List<int>();
         myPartyAges2.AddRange(aBunchOfItems);
         timer.Restart();
-        myPartyAges2.InsertRange(5, aBunchOfItems);
+        myPartyAges2.InsertRange(5, aBunchOfItems);     // slower builtin  -- cause of built in code for IEnumerable-- reflector video time-- 9:50
+        //myPartyAges2.InsertRange(5, myPartyAges2);    // faster builtin
         timer.Stop();
         Console.WriteLine("List:\t" + (timer.ElapsedTicks / (float)Stopwatch.Frequency));
 
